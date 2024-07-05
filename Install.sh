@@ -48,35 +48,35 @@ function installInstallerDependencies() {
 }
 
 function installDependencies() {
-    echo "Hello World"
+    echo "Installing dependencies..."
 }
 
 function configureSudoers() {
-    echo "Hello World"
+    echo "Configuring sudoers..."
 }
 
 function addStartupPrograms() {
-    echo "Hello World"
+    echo "Adding startup programs..."
 }
 
 function addSystemServices() {
-    echo "Hello World"
+    echo "Adding system services..."
 }
 
 function addUsbEvent() {
-    echo "Hello World"
+    echo "Adding USB event..."
 }
 
 function installGnomeExtensions() {
-    echo "Hello World"
+    echo "Installing Gnome extensions..."
 }
 
 function setBackground() {
-    echo "Hello World"
+    echo "Setting background..."
 }
 
 function askForReboot() {
-    echo "Hello World"
+    
 }
 
 #########################
