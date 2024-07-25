@@ -1,7 +1,22 @@
 #!/bin/bash
 
 source "InstallerFiles/Utils.sh"
+    
+function installCameraPatch()
+{
+    echo "Installing dependencies..."
 
+    sudo apt install -y ffmpeg v4l2loopback-dkms > /dev/null 2>&1
+
+    echo "Installing camera patch..."
+    local destinationDir="$HOME/"
+    local sourceDir="Additionals/CameraPatch/SmartifyOS"
+
+    cp -r "$sourceDir" "$destinationDir"
+
+    addStartup "CrateVirtualCamera" "$HOME/SmartifyOS/Scripts/CreateVirtualCamera.sh"
+    addStartup "CameraConversionPatch" "$HOME/SmartifyOS/Scripts/CameraConverter.py"
+}
 
 if ! checkInternet; then
     echo "Please connect the Computer to the Internet while running the installer!"
@@ -18,12 +33,29 @@ items=(
     1 "Install USB camera Patch (coverts the camera format to one that is readable by unity)"
 )
 
-# Display the checklist dialog
-selected=$(yad --center --text="Select additional things you want to install" --list --checklist --title="Select Options" --column="Selected" --column="Option" "${items[@]}" --width=800 --height=300 --separator=",")
+printf "\n\n\n"
 
-# Check if the user pressed "Cancel"
-if [ $? -eq 0 ]; then
-    echo "You selected: $selected"
-else
-    echo "No selection made."
-fi
+echo -e "${BOLD}Please select one or more additional options to install (separated by space):${RESET}"
+for i in "${!items[@]}"; do
+    if [[ $((i % 2)) -eq 0 ]]; then
+        printf "%s. %s\n" "${items[$i]}" "${items[$((i + 1))]}"
+    fi
+done
+
+printf "\n"
+
+# Read user input
+read -p "Enter your choices: " -a selections
+
+# Process each selected option
+for selection in "${selections[@]}"; do
+    case $selection in
+        1)
+            echo "Installing Camera patch..."
+            installCameraPatch
+            ;;
+        *)
+            echo "Invalid selection: $selection"
+            ;;
+    esac
+done
