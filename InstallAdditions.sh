@@ -15,8 +15,7 @@ fi
 
 # Define the items for the checklist
 items=(
-    1 "Install OpenRGB and .Net (for unity communication with OpenRGB)"
-    2 "Install USB camera Patch (coverts the camera format to one that is readable by unity)"
+    1 "Install USB camera Patch (coverts the camera format to one that is readable by unity)"
 )
 
 # Display the checklist dialog

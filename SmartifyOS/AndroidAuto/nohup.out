@@ -1,0 +1,36 @@
+ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.rear
+ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.center_lfe
+ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.side
+ALSA lib pcm_route.c:878:(find_matching_chmap) Found no matching channel map
+Cannot connect to server socket err = No such file or directory
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+Cannot connect to server socket err = No such file or directory
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
+ALSA lib pcm_oss.c:397:(_snd_pcm_oss_open) Cannot open device /dev/dsp
+ALSA lib pcm_oss.c:397:(_snd_pcm_oss_open) Cannot open device /dev/dsp
+ALSA lib pcm_a52.c:1001:(_snd_pcm_a52_open) a52 is only for playback
+ALSA lib confmisc.c:160:(snd_config_get_card) Invalid field card
+ALSA lib pcm_usb_stream.c:482:(_snd_pcm_usb_stream_open) Invalid card 'card'
+ALSA lib confmisc.c:160:(snd_config_get_card) Invalid field card
+ALSA lib pcm_usb_stream.c:482:(_snd_pcm_usb_stream_open) Invalid card 'card'
+[I]: Loaded configuration from 'config/default.ini'.
+BoringSSL is the SSL implementation used in the receiver-lib.
+Starting link. Requested protocol version: 1.7
+[I]: Searching for compatible USB device...
+[I]: Found 9 USB devices.
+[I]: Found device 'Google Pixel 8 Pro 37141FDJG00BGU' in accessory mode (vid=18d1, pid=2d00).
+[I]: Found accessory: ifnum: 0, rd_ep: 129, wr_ep: 1
+[I]: Attaching to USB device...
+[I]: Attached!
+Android Auto - Desktop Head Unit
+  Build: 2022-03-30-438482292
+  Version: 2.0-linux
+
+
+Window desktop-head-unit not found

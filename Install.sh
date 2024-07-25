@@ -38,17 +38,20 @@ function copySystemDirectories() {
 function installInstallerDependencies() {
     echo "Updating your system..."
 
-    #sudo apt-get update > /dev/null 2>&1
+    sudo apt-get update > /dev/null 2>&1
 
     echo "Installing installer dependencies..."
 
-    #sudo apt-get install -y yad > /dev/null 2>&1
+    sudo apt-get install -y yad > /dev/null 2>&1
 
     echo "Installer dependencies installed!"
 }
 
 function installDependencies() {
     echo "Installing dependencies..."
+
+    # Android Auto dependencies
+    sudo apt-get install -y adb libc++1 libc++abi1 tmux > /dev/null 2>&1
 }
 
 function configureSudoers() {
@@ -76,7 +79,7 @@ function setBackground() {
 }
 
 function askForReboot() {
-    
+    echo "Rebooting..."
 }
 
 #########################
