@@ -46,7 +46,11 @@ function installDependencies() {
     # Android Auto dependencies
     sudo apt-get install -y adb libc++1 libc++abi1 tmux > /dev/null 2>&1
     # Gnome extension dependencies
-    sudo apt-get install -y gnome-shell-extensions gnome-shell-extension-tool gnome-extensions> /dev/null 2>&1
+    sudo apt-get install -y gnome-shell-extensions gnome-extensions > /dev/null 2>&1 #gnome-shell-extension-tool
+
+    sudo apt install -y python3 xinput xdotool x11-utils > /dev/null 2>&1
+
+    echo "Dependencies installed"
 }
 
 function configureSudoers() {
@@ -102,28 +106,26 @@ function addUsbEvent() {
     addUdevUsbRule "$HOME/SmartifyOS/Events/OnUsbDeviceConnected"
 }
 
-installGnomeExtensionByUuid() {
-    local EXTENSION_UUID=$1
 
-    # Install the GNOME extension
-    gnome-extensions install "$EXTENSION_UUID"
+function configureAppearance() {
+    echo "Configuring appearance..."
 
-    echo "GNOME extension with UUID $EXTENSION_UUID installed."
-}
+    #Hide desktop icons
+    gnome-extensions disable ding@rastersoft.com
 
-disableGsettingsExtension() {
-    local EXTENSION_KEY=$1
-    gsettings set "$EXTENSION_KEY" false
-    echo "GNOME extension with key $EXTENSION_KEY disabled."
-}
+    # Hide Dock
+    gsettings set org.gnome.shell.extensions.dash-to-dock autohide true
+    gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
 
+    #Hide Top Bar
+    gnome-extensions install ./InstallerFiles/hidetopbar@mathieu.bidon.ca.zip
+    sleep 5
+    gnome-extensions enable hidetopbar@mathieu.bidon.ca
 
-function installGnomeExtensions() {
-    echo "Installing Gnome extensions..."
-
-    # TODO: Install other Gnome extensions
-
-    disableGsettingsExtension "org.gnome.shell.extensions.dash-to-dock"
+    #gsettings set org.gnome.shell.extensions.hidetopbar mouse-sensitive true
+    #gsettings set org.gnome.shell.extensions.hidetopbar enable-intellihide true
+    dconf write /org/gnome/shell/extensions/hidetopbar/mouse-sensitive true
+    dconf write /org/gnome/shell/extensions/hidetopbar/enable-intellihide false
 }
 
 function setBackground() {
@@ -141,12 +143,14 @@ function askForReboot() {
     case "$RESPONSE" in
         y|yes)
             echo "Rebooting..."
+            sudo reboot
             ;;
         n|no)
             echo "Exiting..."
             ;;
         *)
             echo "Invalid response. Please enter 'y' or 'n'."
+            askForReboot
             ;;
     esac
 }
@@ -182,7 +186,7 @@ addSystemServices
 addUsbEvent
 
 #Install gnome extension
-installGnomeExtensions
+configureAppearance
 
 #set background
 setBackground
