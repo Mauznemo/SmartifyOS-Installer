@@ -2,6 +2,7 @@
 
 source "InstallerFiles/Utils.sh"
 
+noUpgrade=$1
 #########################
 ####### Functions #######
 #########################
@@ -13,72 +14,57 @@ function copySystemDirectories() {
     # Ensure destination path exists
     mkdir -p "$destinationDir"
 
-    # Get the total size of the source directory
-    local totalFiles=$(find "$sourceDir" -type f | wc -l)
+    printBold "Copying system files..."
 
-    local files=0
-
-    cp -av "$sourceDir" "$destinationDir" | (
-        while read -r line; do
-            files=$((files + 1))
-
-            local progress=$(((files * 100) / totalFiles))
-
-            # Update Yad progress bar
-            echo "Copying files... $progress% - $files/$totalFiles"
-        done
-    )
-
+    cp -a "$sourceDir" "$destinationDir"
 }
 
 
 function installInstallerDependencies() {
-    echo "Updating your system..."
+    printBold "Updating your system..."
 
-    sudo apt-get update > /dev/null 2>&1
+    sudo apt-get update -y
 
-    echo "System updated"
+    if [ "$noUpgrade" != "no-upgrade" ]; then
+        sudo apt-get upgrade -y
+    fi
+
+    printBold "System updated"
 }
 
 function installDependencies() {
-    echo "Installing dependencies..."
+    printBold "Installing dependencies..."
+
+    # Dependencies for installer
+    sudo apt-get install -y libnotify-bin #> /dev/null 2>&1
 
     # Android Auto dependencies
-    sudo apt-get install -y adb libc++1 libc++abi1 tmux > /dev/null 2>&1
+    sudo apt-get install -y adb libc++1 libc++abi1 tmux xdotool #> /dev/null 2>&1
     # Gnome extension dependencies
-    sudo apt-get install -y gnome-shell-extensions gnome-extensions > /dev/null 2>&1 #gnome-shell-extension-tool
+    sudo apt-get install -y gnome-shell-extensions gnome-shell-extension-prefs #> /dev/null 2>&1 #gnome-shell-extension-tool
 
-    sudo apt install -y python3 xinput xdotool x11-utils > /dev/null 2>&1
+    #sudo apt install -y python3 xinput xdotool x11-utils > /dev/null 2>&1
 
-    echo "Dependencies installed"
+    printBold "Dependencies installed"
 }
 
 function configureSudoers() {
-    echo "Configuring sudoers..."
+    printBold "Configuring sudoers..."
     # Needed so the Unity app can run sudo commands
     echo "$USERNAME ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers.d/$USERNAME
 
     sudo chmod 0440 /etc/sudoers.d/$USERNAME
 
     if sudo visudo -c &>/dev/null; then
-        echo "Sudoers configured successfully."
+        printBold "Sudoers configured successfully."
     else
         echo -e "${RED}Configuring sudoers failed. Rolling back changes.${RESET}"
         sudo rm -f /etc/sudoers.d/$USERNAME
         exit 1
     fi
-}
 
-function addStartupPrograms() {
-    echo "Adding startup programs..."
-
-    addStartup "TouchInput" "$HOME/SmartifyOS/Scripts/TouchInput.py"
-}
-
-
-function addSystemServices() {
-    echo "Adding system services..."
-    addSystemdService "smartify-os" "Smartify OS" "$HOME/SmartifyOS/Scripts/StartSmartifyOS.sh"
+    # Other permissions
+    sudo usermod -a -G dialout $USERNAME
 }
 
 addUdevUsbRule() {
@@ -97,40 +83,52 @@ addUdevUsbRule() {
     # Reload UDEV rules
     sudo udevadm control --reload-rules
 
-    echo "UDEV rule created and reloaded"
+    printBold "UDEV rule created and reloaded"
 }
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+function addStartupPrograms() {
+    printBold "Adding startup programs..."
+    addStartup "Installer" "$SCRIPT_DIR/InstallerFiles/AfterReboot.sh"
+}
 
 function addUsbEvent() {
-    echo "Adding USB event..."
+    printBold "Adding USB event..."
     addUdevUsbRule "$HOME/SmartifyOS/Events/OnUsbDeviceConnected"
 }
 
 
 function configureAppearance() {
-    echo "Configuring appearance..."
+    printBold "Configuring appearance..."
 
     #Hide desktop icons
     gnome-extensions disable ding@rastersoft.com
 
     # Hide Dock
-    gsettings set org.gnome.shell.extensions.dash-to-dock autohide true
-    gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
+    sudo rm -rf /usr/share/gnome-shell/extensions/ubuntu-dock@ubuntu.com/
 
     #Hide Top Bar
     gnome-extensions install ./InstallerFiles/hidetopbar@mathieu.bidon.ca.zip
-    sleep 5
-    gnome-extensions enable hidetopbar@mathieu.bidon.ca
 
-    #gsettings set org.gnome.shell.extensions.hidetopbar mouse-sensitive true
-    #gsettings set org.gnome.shell.extensions.hidetopbar enable-intellihide true
-    dconf write /org/gnome/shell/extensions/hidetopbar/mouse-sensitive true
-    dconf write /org/gnome/shell/extensions/hidetopbar/enable-intellihide false
+    #Hide Overview on startup
+    gnome-extensions install ./InstallerFiles/no-overview@fthx.zip
+
+    #Disable touch gestures
+    gnome-extensions install ./InstallerFiles/disable-gestures.zip
 }
 
 function setBackground() {
-    echo "Setting background..."
-    # TODO: Set background
+    printBold "Setting background..."
+
+    sudo cp -r ./InstallerFiles/BootTheme/SmartifyOS/ /usr/share/plymouth/themes/
+    sudo update-alternatives --install /usr/share/plymouth/themes/default.plymouth default.plymouth /usr/share/plymouth/themes/SmartifyOS/SmartifyOS.plymouth 200
+    sudo update-initramfs -u
+
+    local BACKGROUND_IMAGE="$SCRIPT_DIR/InstallerFiles/SmartifyOS-Background.png"
+
+    gsettings set org.gnome.desktop.background picture-uri "file://$BACKGROUND_IMAGE"
+    gsettings set org.gnome.desktop.background picture-uri-dark "file://$BACKGROUND_IMAGE"
 }
 
 function askForReboot() {
@@ -178,9 +176,6 @@ configureSudoers
 
 #Add startup programs
 addStartupPrograms
-
-#Add system services
-addSystemServices
 
 #Add USB event
 addUsbEvent
