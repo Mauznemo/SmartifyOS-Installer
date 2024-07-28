@@ -43,7 +43,7 @@ function installDependencies() {
     # Gnome extension dependencies
     sudo apt-get install -y gnome-shell-extensions gnome-shell-extension-prefs #> /dev/null 2>&1 #gnome-shell-extension-tool
 
-    sudo apt-get install -y pulseaudio-utils
+    sudo apt-get install -y pulseaudio-utils mpv
 
     #sudo apt install -y python3 xinput xdotool x11-utils > /dev/null 2>&1
 
