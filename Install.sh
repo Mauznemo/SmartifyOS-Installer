@@ -45,6 +45,9 @@ function installDependencies() {
 
     sudo apt-get install -y pulseaudio-utils mpv
 
+    # Dependencies for touch input
+    sudo apt-get install -y python3-yaml python3-evdev python3-pynput
+
     #sudo apt install -y python3 xinput xdotool x11-utils > /dev/null 2>&1
 
     printBold "Dependencies installed"
@@ -93,6 +96,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 function addStartupPrograms() {
     printBold "Adding startup programs..."
     addStartup "Installer" "$SCRIPT_DIR/InstallerFiles/AfterReboot.sh"
+    addStartup "TouchInput" "$SCRIPT_DIR/StartTouchInput.sh"
 }
 
 function addUsbEvent() {

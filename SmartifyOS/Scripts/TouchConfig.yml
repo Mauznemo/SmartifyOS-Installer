@@ -1,0 +1,4 @@
+event_file: auto #You can put the event file path here (e.g. /dev/input/event3)
+xinput_device: auto #You can put the device id here (e.g. 10)
+search_terms: ["touch", "ilitek"]
+xinput_search_terms: ["touch"]
