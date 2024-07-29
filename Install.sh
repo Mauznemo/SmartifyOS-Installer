@@ -104,6 +104,12 @@ function addUsbEvent() {
     addUdevUsbRule "$HOME/SmartifyOS/Events/OnUsbDeviceConnected"
 }
 
+function configureSystemSettings()
+{
+    printBold "Configuring system settings..."
+
+    sudo timedatectl set-ntp false
+}
 
 function configureAppearance() {
     printBold "Configuring appearance..."
@@ -185,6 +191,9 @@ addStartupPrograms
 
 #Add USB event
 addUsbEvent
+
+#Configure system settings
+configureSystemSettings
 
 #Install gnome extension
 configureAppearance
