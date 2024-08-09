@@ -24,19 +24,37 @@ SmartifyOS is a base application (source code) that makes it easy for you to cre
 <sub>*Current installer needs to be able to install Gnome Shell extensions</sub>
 
 ## How to Install
-1. Clone the repo `git clone https://github.com/Mauznemo/SmartifyOS-Installer.git`
-2. Go into the directory `cd SmartifyOS-Installer`
+1. Clone the repo 
+   ```
+   git clone https://github.com/Mauznemo/SmartifyOS-Installer.git
+   ```
+2. Go into the directory 
+   ```
+   cd SmartifyOS-Installer
+   ```
 3. Copy your build Unity app into the `SmartifyOS/GUI/` directory
-4. Run `./Install.sh`
+4. Run
+   ```
+   ./Install.sh
+   ```
 
 ## How to contribute
 First have a look at the **[Contribution guidelines for this project](CONTRIBUTING.md)**.
 
 1. Go to the repository’s GitHub page and click the “Fork” button to create a copy of the repository in your own GitHub account.
-2. Clone your new repo `git clone https://github.com/your-username/SmartifyOS-Installer.git`
-3. Cd into its directory `cd SmartifyOS-Installer`
-4. Add the Main Repository as a Remote `git remote add upstream https://github.com/Mauznemo/SmartifyOS-Installer.git`
-5. Open the directory in your preferred code editor
+2. Clone your new repo
+   ```
+   git clone https://github.com/your-username/SmartifyOS-Installer.git
+   ```
+1. Cd into its directory
+   ```
+   cd SmartifyOS-Installer
+   ```
+2. Add the Main Repository as a Remote
+   ```
+   git remote add upstream https://github.com/Mauznemo/SmartifyOS-Installer.git
+   ```
+2. Open the directory in your preferred code editor
 
 ### Creating a pull request
 
