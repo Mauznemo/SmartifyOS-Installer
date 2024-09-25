@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euf -o pipefail
+
 source "InstallerFiles/Utils.sh"
 
 noUpgrade=$1

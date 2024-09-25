@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euf -o pipefail
+
 source "Utils.sh"
 
 addStartup "SmartifyOS" "$HOME/SmartifyOS/Scripts/StartSmartifyOS.sh"

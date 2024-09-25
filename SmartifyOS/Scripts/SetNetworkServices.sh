@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euf -o pipefail
+
 ENABLE=$1
 
 if [ -z "$ENABLE" ]; then

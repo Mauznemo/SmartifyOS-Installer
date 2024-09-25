@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euf -o pipefail
+
 usb_mount_points=$(mount | grep "^/dev/sd" | cut -d' ' -f3)
 
 for mount_point in $usb_mount_points; do
