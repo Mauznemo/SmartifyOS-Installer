@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euf -o pipefail
+
 UPDATE_PATH=$1
 
 if [ -z "$UPDATE_PATH" ]; then

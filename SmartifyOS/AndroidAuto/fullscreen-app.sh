@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euf -o pipefail
+
 sleep $1
 
 WINDOW_ID=$(xdotool search --class $2)
