@@ -107,6 +107,10 @@ function configureSystemSettings()
 {
     printBold "Configuring system settings..."
 
+    #TODO: add autologin
+
+    #TODO: add GRUB config
+
     sudo timedatectl set-ntp false
 }
 
@@ -117,7 +121,11 @@ function configureAppearance() {
 
 function setBackground() {
     printBold "Setting background..."
-    #TODO: remove/set background
+
+    sed -i 's/show_trash=1/show_trash=0/' ~/.config/pcmanfm/LXDE/desktop-items-0.conf
+
+    local BACKGROUND_IMAGE="$SCRIPT_DIR/InstallerFiles/SmartifyOS-Background.png"
+    pcmanfm --set-wallpaper "$BACKGROUND_IMAGE"
 }
 
 function askForReboot() {
