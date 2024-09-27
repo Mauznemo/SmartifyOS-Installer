@@ -50,7 +50,6 @@ Type=Application
 Exec=$COMMAND
 Hidden=false
 NoDisplay=false
-X-GNOME-Autostart-enabled=true
 Name=$PROGRAM_NAME
 Comment=Start $PROGRAM_NAME at login
 EOL

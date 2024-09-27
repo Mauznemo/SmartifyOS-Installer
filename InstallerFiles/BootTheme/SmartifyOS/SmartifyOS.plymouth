@@ -1,8 +1,0 @@
-[Plymouth Theme]
-Name=SmartifyOS Theme
-Description=Custom Boot Screen with PNG Logo
-ModuleName=script
-
-[script]
-ImageDir=/usr/share/plymouth/themes/SmartifyOS
-ScriptFile=/usr/share/plymouth/themes/SmartifyOS/SmartifyOS.script

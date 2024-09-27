@@ -18,7 +18,7 @@ SmartifyOS is a base application (source code) that makes it easy for you to cre
 ## Supported Platforms
 | Platform         | Supported   |
 | ---------------- | ----------- |
-| Ubuntu 24.04 LTS | yes         |
+| Debian with LXDE | yes         |
 | Linux other      | not tested* |
 
 <sub>*Current installer needs to be able to install Gnome Shell extensions</sub>

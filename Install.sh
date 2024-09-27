@@ -41,16 +41,13 @@ function installDependencies() {
     sudo apt-get install -y libnotify-bin #> /dev/null 2>&1
 
     # Android Auto dependencies
-    sudo apt-get install -y adb libc++1 libc++abi1 tmux xdotool #> /dev/null 2>&1
-    # Gnome extension dependencies
-    sudo apt-get install -y gnome-shell-extensions gnome-shell-extension-prefs #> /dev/null 2>&1 #gnome-shell-extension-tool
+    sudo apt-get install -y adb libc++1 libc++abi1 wmctrl xdotool #> /dev/null 2>&1
 
     sudo apt-get install -y pulseaudio-utils mpv
 
     # Dependencies for touch input
     sudo apt-get install -y python3-yaml python3-evdev python3-pynput
-
-    #sudo apt install -y python3 xinput xdotool x11-utils > /dev/null 2>&1
+    sudo apt install -y xinput
 
     printBold "Dependencies installed"
 }
@@ -58,20 +55,20 @@ function installDependencies() {
 function configureSudoers() {
     printBold "Configuring sudoers..."
     # Needed so the Unity app can run sudo commands
-    echo "$USERNAME ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers.d/$USERNAME
+    echo "$USER ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers.d/$USER
 
-    sudo chmod 0440 /etc/sudoers.d/$USERNAME
+    sudo chmod 0440 /etc/sudoers.d/$USER
 
     if sudo visudo -c &>/dev/null; then
         printBold "Sudoers configured successfully."
     else
         echo -e "${RED}Configuring sudoers failed. Rolling back changes.${RESET}"
-        sudo rm -f /etc/sudoers.d/$USERNAME
+        sudo rm -f /etc/sudoers.d/$USER
         exit 1
     fi
 
     # Other permissions
-    sudo usermod -a -G dialout $USERNAME
+    sudo usermod -a -G dialout $USER
 }
 
 addUdevUsbRule() {
@@ -97,8 +94,8 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 function addStartupPrograms() {
     printBold "Adding startup programs..."
-    addStartup "Installer" "$SCRIPT_DIR/InstallerFiles/AfterReboot.sh"
     addStartup "TouchInput" "$SCRIPT_DIR/StartTouchInput.sh"
+    addStartup "SmartifyOS" "$HOME/SmartifyOS/Scripts/StartSmartifyOS.sh"
 }
 
 function addUsbEvent() {
@@ -115,34 +112,12 @@ function configureSystemSettings()
 
 function configureAppearance() {
     printBold "Configuring appearance..."
-
-    #Hide desktop icons
-    gnome-extensions disable ding@rastersoft.com
-
-    # Hide Dock
-    sudo rm -rf /usr/share/gnome-shell/extensions/ubuntu-dock@ubuntu.com/
-
-    #Hide Top Bar
-    gnome-extensions install ./InstallerFiles/hidetopbar@mathieu.bidon.ca.zip
-
-    #Hide Overview on startup
-    gnome-extensions install ./InstallerFiles/no-overview@fthx.zip
-
-    #Disable touch gestures
-    gnome-extensions install ./InstallerFiles/disable-gestures.zip
+    #TODO: remove dock
 }
 
 function setBackground() {
     printBold "Setting background..."
-
-    sudo cp -r ./InstallerFiles/BootTheme/SmartifyOS/ /usr/share/plymouth/themes/
-    sudo update-alternatives --install /usr/share/plymouth/themes/default.plymouth default.plymouth /usr/share/plymouth/themes/SmartifyOS/SmartifyOS.plymouth 200
-    sudo update-initramfs -u
-
-    local BACKGROUND_IMAGE="$SCRIPT_DIR/InstallerFiles/SmartifyOS-Background.png"
-
-    gsettings set org.gnome.desktop.background picture-uri "file://$BACKGROUND_IMAGE"
-    gsettings set org.gnome.desktop.background picture-uri-dark "file://$BACKGROUND_IMAGE"
+    #TODO: remove/set background
 }
 
 function askForReboot() {
