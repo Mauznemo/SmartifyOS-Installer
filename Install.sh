@@ -157,7 +157,7 @@ EOF
 
     echo "Grub configuration updated successfully!"
 
-    sudo timedatectl set-ntp false
+    #sudo timedatectl set-ntp false
 }
 
 function configureAppearance() {
