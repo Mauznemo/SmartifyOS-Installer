@@ -38,17 +38,22 @@ function installInstallerDependencies() {
 function installDependencies() {
     printBold "Installing dependencies..."
 
-    # Dependencies for installer
-    sudo apt-get install -y libnotify-bin #> /dev/null 2>&1
 
     # Android Auto dependencies
     sudo apt-get install -y adb libc++1 libc++abi1 wmctrl xdotool #> /dev/null 2>&1
 
+    # Dependencies for media playback
     sudo apt-get install -y pulseaudio-utils mpv
+
+    # Dependencies for bluetooth
+    sudo apt install rfkill pulseaudio-module-bluetooth
 
     # Dependencies for touch input
     sudo apt-get install -y python3-yaml python3-evdev python3-pynput
     sudo apt install -y xinput
+
+    # Other dependencies
+    sudo apt-get install -y rsync
 
     printBold "Dependencies installed"
 }
