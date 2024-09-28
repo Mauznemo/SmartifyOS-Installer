@@ -4,7 +4,8 @@ set -euf -o pipefail
 
 source "InstallerFiles/Utils.sh"
 
-noUpgrade=$1
+noUpgrade=${1:-}
+
 #########################
 ####### Functions #######
 #########################
