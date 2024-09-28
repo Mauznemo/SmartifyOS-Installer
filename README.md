@@ -16,14 +16,62 @@ SmartifyOS is a base application (source code) that makes it easy for you to cre
 
 
 ## Supported Platforms
-| Platform         | Supported   |
-| ---------------- | ----------- |
-| Debian with LXDE | yes         |
-| Linux other      | not tested* |
-
-<sub>*Current installer needs to be able to install Gnome Shell extensions</sub>
+| Platform         | Supported |
+| ---------------- | --------- |
+| Debian with LXDE | yes       |
 
 ## How to Install
+### Install Debian with LXDE
+<details>
+  <summary><b>Simple Install</b></summary>
+
+  1. Download [this](https://files.smartify-os.com/s/ArRApq65ncNZCkC) pre-made ISO Debian file (made with [fai-project.org](https://fai-project.org/FAIme/))
+  2. Flash it to a USB drive and boot it on the PC
+  3. After reboot login username `debian` password `debian`
+  4. Install LXDE and openbox
+      ```
+      sudo apt update
+      ```
+      ```
+      sudo apt install lxde-core openbox
+      ```
+   
+</details>
+
+<details>
+  <summary><b>Manuel Install</b></summary>
+
+  1. Download the [Debian ISO](https://www.debian.org/download) file
+  2. Flash it to a USB drive and boot it on the PC
+   <details>
+      <summary>Steps in Debian installer</summary>
+
+  3. Select "Install"
+  4. Select Language and Keyboard Layout
+  5. Select Internet device (LAN Recommended)
+  6. Name the system
+  7. Set the root password (maybe dont set to auto install sudo??)
+  8. Select time zone
+  9.  Select "Guided - use entire disk"
+  10. Select the drive to install the system on
+  11. Select "All files in one partition"
+  12. Then "Finish partitioning and write changes to disk" and "Yes"
+  13. Select your mirror country
+  14. Deselect "Debian desktop environment" and "GNOME" (Space)
+   </details>
+
+  15. After reboot login (as root??)
+  16. Install LXDE and openbox
+      ```
+      sudo apt update
+      ```
+      ```
+      sudo apt install lxde-core openbox
+      ```
+
+</details>
+
+### Install SmartifyOS
 1. Clone the repo 
    ```
    git clone https://github.com/Mauznemo/SmartifyOS-Installer.git
