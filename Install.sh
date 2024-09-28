@@ -150,6 +150,8 @@ GRUB_BACKGROUND=""
 EOF
 
     sudo sed -i 's/^quiet_boot="0"/quiet_boot="1"/g' /etc/grub.d/10_linux
+
+    sudo systemctl mask getty@tty1.service
     
     sudo update-grub
 
