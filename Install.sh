@@ -138,7 +138,22 @@ function configureSystemSettings()
 
     echo "Configurations added successfully."
 
-    #TODO: add GRUB config
+    # Replace /etc/default/grub with the new content
+    sudo tee /etc/default/grub > /dev/null << 'EOF'
+GRUB_DEFAULT=0
+GRUB_TIMEOUT=0
+GRUB_HIDDEN_TIMEOUT_QUIET=true
+GRUB_DISTRIBUTOR=`lsb_release -i -s 2> /dev/null || echo Debian`
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash gfxpayload=text loglevel=3 rd.systemd.show_status=auto rd.udev.log-priority=3 vt.global_cursor_default=0"
+GRUB_CMDLINE_LINUX="console=ttyS0"
+GRUB_BACKGROUND=""
+EOF
+
+    sudo sed -i 's/^quiet_boot="0"/quiet_boot="1"/g' /etc/grub.d/10_linux
+    
+    sudo update-grub
+
+    echo "Grub configuration updated successfully!"
 
     sudo timedatectl set-ntp false
 }
