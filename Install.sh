@@ -162,7 +162,7 @@ EOF
 
 function configureAppearance() {
     printBold "Configuring appearance..."
-    #TODO: remove dock
+    sudo sed -i 's/^@lxpanel --profile LXDE/#@lxpanel --profile LXDE/g' $HOME/.config/lxsession/LXDE/autostart
 }
 
 function setBackground() {
