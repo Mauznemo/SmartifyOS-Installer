@@ -169,10 +169,11 @@ function configureAppearance() {
 function setBackground() {
     printBold "Setting background..."
 
-    sed -i 's/show_trash=1/show_trash=0/' ~/.config/pcmanfm/LXDE/desktop-items-0.conf
 
     local BACKGROUND_IMAGE="$SCRIPT_DIR/InstallerFiles/SmartifyOS-Background.png"
     pcmanfm --set-wallpaper "$BACKGROUND_IMAGE"
+    sleep 0.5
+    sed -i 's/show_trash=1/show_trash=0/' $HOME/.config/pcmanfm/LXDE/desktop-items-0.conf
 }
 
 function askForReboot() {
