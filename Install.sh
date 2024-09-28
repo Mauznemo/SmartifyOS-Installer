@@ -107,7 +107,36 @@ function configureSystemSettings()
 {
     printBold "Configuring system settings..."
 
-    #TODO: add autologin
+    # Define the config file path
+    local CONFIG_FILE="/etc/lightdm/lightdm.conf"
+
+    # Define the lines to add
+    local pam_service="pam-service=lightdm"
+    local pam_autologin_service="pam-autologin-service=lightdm-autologin"
+    local autologin_user="autologin-user=$USER"
+    local autologin_timeout="autologin-user-timeout=0"
+
+    # Check if the file contains the "[Seat:*]" section
+    if grep -q "^\[Seat:\*\]" "$CONFIG_FILE"; then
+        echo "[Seat:*] section found, adding configurations..."
+
+        # Remove old lines if they already exist to prevent duplicates
+        sudo sed -i "/pam-service=lightdm/d" "$CONFIG_FILE"
+        sudo sed -i "/pam-autologin-service=lightdm-autologin/d" "$CONFIG_FILE"
+        sudo sed -i "/autologin-user=/d" "$CONFIG_FILE"
+        sudo sed -i "/autologin-user-timeout=/d" "$CONFIG_FILE"
+
+        # Add new configurations under "[Seat:*]"
+        sudo sed -i "/^\[Seat:\*\]/a $pam_service\n$pam_autologin_service\n$autologin_user\n$autologin_timeout" "$CONFIG_FILE"
+    else
+        echo "[Seat:*] section not found, creating it..."
+
+        # Append [Seat:*] section with the required lines
+        #echo -e "\n[Seat:*]\n$lines_to_add" >> "$CONFIG_FILE"
+        sudo echo -e "\n[Seat:*]\n$pam_service\n$pam_autologin_service\n$autologin_user\n$autologin_timeout" | sudo tee -a "$CONFIG_FILE" > /dev/null
+    fi
+
+    echo "Configurations added successfully."
 
     #TODO: add GRUB config
 
