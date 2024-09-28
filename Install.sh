@@ -158,6 +158,8 @@ EOF
 
     echo "Grub configuration updated successfully!"
 
+    sudo sed -i 's/^autorun=1/autorun=0/g' $HOME/.config/pcmanfm/LXDE/pcmanfm.conf
+
     #sudo timedatectl set-ntp false
 }
 
