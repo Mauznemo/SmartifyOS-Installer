@@ -50,9 +50,9 @@ SmartifyOS is a base application (source code) that makes it easy for you to cre
   4. Select Language and Keyboard Layout
   5. Select Internet device (LAN Recommended)
   6. Name the system
-  7. Set the root password (maybe dont set to auto install sudo??)
+  7. Set **NO** root password (this will install sudo and add your new user to sudoers)
   8. Select time zone
-  9.  Select "Guided - use entire disk"
+  9. Select "Guided - use entire disk"
   10. Select the drive to install the system on
   11. Select "All files in one partition"
   12. Then "Finish partitioning and write changes to disk" and "Yes"
@@ -60,8 +60,8 @@ SmartifyOS is a base application (source code) that makes it easy for you to cre
   14. Deselect "Debian desktop environment" and "GNOME" (Space)
    </details>
 
-  15. After reboot login (as root??)
-  16. Install LXDE and openbox
+  3. After reboot login with your username and password
+  4. Install LXDE and openbox
       ```
       sudo apt update
       ```
