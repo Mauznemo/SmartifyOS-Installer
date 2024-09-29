@@ -8,7 +8,7 @@ function installCameraPatch()
 {
     echo "Installing dependencies..."
 
-    sudo apt install -y ffmpeg v4l2loopback-dkms #> /dev/null 2>&1
+    sudo apt-get install -y ffmpeg v4l2loopback-dkms #> /dev/null 2>&1
 
     echo "Installing camera patch..."
     local destinationDir="$HOME/"
@@ -18,6 +18,19 @@ function installCameraPatch()
 
     addStartup "CrateVirtualCamera" "$HOME/SmartifyOS/Scripts/CreateVirtualCamera.sh"
     addStartup "CameraConversionPatch" "$HOME/SmartifyOS/Scripts/CameraConverter.py"
+}
+
+function installAndroidAuto()
+{
+    echo "Installing dependencies..."
+
+    sudo apt-get install -y adb libc++1 libc++abi1 wmctrl xdotool
+
+    echo "Installing Android Auto..."
+    local destinationDir="$HOME/"
+    local sourceDir="Additionals/AndroidAuto/SmartifyOS"
+
+    cp -r "$sourceDir" "$destinationDir"
 }
 
 if ! checkInternet; then
@@ -32,7 +45,8 @@ fi
 
 # Define the items for the checklist
 items=(
-    1 "Install USB camera Patch (coverts the camera format to one that is readable by unity)"
+    1 "Android Auto"
+    2 "Install USB camera Patch (coverts the camera format to one that is readable by unity)"
 )
 
 printf "\n\n\n"
@@ -53,6 +67,10 @@ read -p "Enter your choices: " -a selections
 for selection in "${selections[@]}"; do
     case $selection in
         1)
+            echo "Installing Android Auto..."
+            installAndroidAuto
+            ;;
+        2)
             echo "Installing Camera patch..."
             installCameraPatch
             ;;
