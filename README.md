@@ -3,6 +3,9 @@
 >[!CAUTION]
 >**Disclaimer:** This software is currently in the development phase and is intended for developers. It is not suitable for general use in vehicles yet.
 
+> [!WARNING]
+> This Ubuntu installer is obsolete, use Debian with LXDE instead! 
+
 ## About
 
 ### Short description:
