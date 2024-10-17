@@ -11,7 +11,7 @@ SmartifyOS is a base application (source code) that makes it easy for you to cre
 [More](https://smartify-os.com/about)
 
 ### This repo contains:
-1. The "one click installer" .sh file to auto install and setup an Ubuntu machine
+1. The "one click installer" .sh file to auto install and setup an Debian with LXDE machine
 2. All other files the main Unity app depends on like Android Auto, etc.
 
 
