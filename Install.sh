@@ -61,6 +61,9 @@ function configureSudoers() {
 
     sudo chmod 0440 /etc/sudoers.d/$USER
 
+    # Remove "$USER ALL = ALL" from /etc/sudoers, accounting for multiple spaces
+    sudo sed -i "/^$USER[[:space:]]\+ALL[[:space:]]\+=[[:space:]]\+ALL$/d" /etc/sudoers
+
     if sudo visudo -c &>/dev/null; then
         printBold "Sudoers configured successfully."
     else
@@ -71,6 +74,13 @@ function configureSudoers() {
 
     # Other permissions
     sudo usermod -a -G dialout $USER
+}
+
+function setPermissions() {
+    printBold "Setting permissions..."
+
+    find . -name "*.sh" -exec chmod +x {} \;
+    sudo chmod +x "$HOME/SmartifyOS/GUI/*.x86_64"
 }
 
 addUdevUsbRule() {
@@ -221,6 +231,9 @@ installDependencies
 
 #Configure system permissions
 configureSudoers
+
+#Set permissions
+setPermissions
 
 #Add startup programs
 addStartupPrograms
