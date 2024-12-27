@@ -26,7 +26,7 @@ SmartifyOS is a base application (source code) that makes it easy for you to cre
   <summary><b>Simple Install</b></summary>
 
   1. Download [this](https://files.smartify-os.com/s/ArRApq65ncNZCkC) pre-made ISO Debian file (made with [fai-project.org](https://fai-project.org/FAIme/))
-  2. Flash it to a USB drive and boot it on the PC
+  2. Flash it to a USB drive and boot it on the computer (with for example [balenaEtcher](https://etcher.balena.io/))
   3. After reboot login username `debian` password `debian`
   4. Install LXDE and openbox
       ```
@@ -35,6 +35,10 @@ SmartifyOS is a base application (source code) that makes it easy for you to cre
       ```
       sudo apt install lxde-core openbox
       ```
+   5. Reboot the system
+      ```
+      sudo reboot
+      ```
    
 </details>
 
@@ -42,7 +46,7 @@ SmartifyOS is a base application (source code) that makes it easy for you to cre
   <summary><b>Manuel Install</b></summary>
 
   1. Download the [Debian ISO](https://www.debian.org/download) file
-  2. Flash it to a USB drive and boot it on the PC
+  2. Flash it to a USB drive and boot it on the computer (with for example [balenaEtcher](https://etcher.balena.io/))
    <details>
       <summary>Steps in Debian installer</summary>
 
@@ -60,19 +64,41 @@ SmartifyOS is a base application (source code) that makes it easy for you to cre
   14. Deselect "Debian desktop environment" and "GNOME" (Space)
    </details>
 
-  3. After reboot login with your username and password
-  4. Install LXDE and openbox
+  15. After reboot login with your username and password
+  16. Install LXDE and openbox
       ```
       sudo apt update
       ```
       ```
       sudo apt install lxde-core openbox
       ```
-
+   17. Reboot the system
+      ```
+      sudo reboot
+      ```
 </details>
 
 ### Install SmartifyOS
-1. Clone the repo 
+
+<details open>
+   <summary><b>Simple Install</b></summary>
+
+1. Open the Export window in Unity (`Ctrl + E` or `SmartifyOS > Export`)
+2. Select a USB drive and click "Export Installer"
+3. On the mini computer press `Super (Win) + E` and open the usb drive, select the folder "SmartifyOS-Installer", right click it and select `Copy`
+4. Go into "Documents", right click and select paste, now open in and select the path and copy it (eg. `/home/debian/Documents/SmartifyOS-Installer`)
+5. Now (still in the file manager click on `Applications > System Tools > LXTerminal`)
+6. Write `cd ` and past the path you just copied
+7. Run
+   ```
+   ./Install.sh
+   ```
+</details>
+
+<details>
+   <summary><b>Manuel Install</b></summary>
+
+1. Clone the repo
    ```
    git clone https://github.com/Mauznemo/SmartifyOS-Installer.git
    ```
@@ -85,6 +111,17 @@ SmartifyOS is a base application (source code) that makes it easy for you to cre
    ```
    ./Install.sh
    ```
+</details>
+
+<details>
+   <summary><b>Possible problems</b></summary>
+
+   > **Permission denied when running `./Install.sh`**
+   > Run `sudo chmod +x *.sh` and try again
+
+   > **Installer says it has no Internet**
+   > If you connected the LAN cable after boot you many need to reboot they system with it connected
+</details>
 
 ## How to contribute
 First have a look at the **[Contribution guidelines for this project](CONTRIBUTING.md)**.
