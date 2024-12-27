@@ -73,9 +73,9 @@ SmartifyOS is a base application (source code) that makes it easy for you to cre
       sudo apt install lxde-core openbox
       ```
    17. Reboot the system
-      ```
-      sudo reboot
-      ```
+       ```
+       sudo reboot
+       ```
 </details>
 
 ### Install SmartifyOS
@@ -88,7 +88,7 @@ SmartifyOS is a base application (source code) that makes it easy for you to cre
 3. On the mini computer press `Super (Win) + E` and open the usb drive, select the folder "SmartifyOS-Installer", right click it and select `Copy`
 4. Go into "Documents", right click and select paste, now open in and select the path and copy it (eg. `/home/debian/Documents/SmartifyOS-Installer`)
 5. Now (still in the file manager click on `Applications > System Tools > LXTerminal`)
-6. Write `cd ` and past the path you just copied
+6. Write `cd `, past the path you just copied and press Enter
 7. Run
    ```
    ./Install.sh
@@ -116,10 +116,10 @@ SmartifyOS is a base application (source code) that makes it easy for you to cre
 <details>
    <summary><b>Possible problems</b></summary>
 
-   > **Permission denied when running `./Install.sh`**
+   > **Permission denied when running `./Install.sh`**\
    > Run `sudo chmod +x *.sh` and try again
 
-   > **Installer says it has no Internet**
+   > **Installer says it has no Internet**\
    > If you connected the LAN cable after boot you many need to reboot they system with it connected
 </details>
 
