@@ -80,7 +80,7 @@ function setPermissions() {
     printBold "Setting permissions..."
 
     find . -name "*.sh" -exec chmod +x {} \;
-    sudo chmod +x "$HOME/SmartifyOS/GUI/*.x86_64"
+    sudo chmod +x "$HOME/SmartifyOS/GUI/SmartifyOS.x86_64"
 }
 
 addUdevUsbRule() {
