@@ -90,7 +90,7 @@ SmartifyOS is a base application (source code) that makes it easy for you to cre
 5. Now (still in the file manager click on `Applications > System Tools > LXTerminal`)
 6. Write `cd `, past the path you just copied and press Enter
 7. Run
-8. ```
+   ```
    chmod +x Install.sh
    ```
 9. And then
