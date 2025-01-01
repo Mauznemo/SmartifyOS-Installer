@@ -79,7 +79,7 @@ function configureSudoers() {
 function setPermissions() {
     printBold "Setting permissions..."
 
-    find . -name "*.sh" -exec chmod +x {} \;
+    find $HOME/SmartifyOS/ -name "*.sh" -exec chmod +x {} \;
     sudo chmod +x "$HOME/SmartifyOS/GUI/SmartifyOS.x86_64"
 }
 
