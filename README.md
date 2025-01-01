@@ -120,7 +120,10 @@ SmartifyOS is a base application (source code) that makes it easy for you to cre
    > Run `sudo chmod +x *.sh` and try again
 
    > **Installer says it has no Internet**\
-   > If you connected the LAN cable after boot you many need to reboot they system with it connected
+   > If you connected the LAN cable after boot you many need to reboot the system with it connected
+
+   > **Boot takes really long**\
+   > If you boot the system without a connected lan cable it will try to connect to something anyways for several min. To stop ot from doing so press `Super (Win) + E` click on `Applications > System Tools > LXTerminal` and run `./SmartifyOS/Scripts/SetNetworkServices.sh disable`
 </details>
 
 ## How to contribute
