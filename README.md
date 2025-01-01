@@ -90,6 +90,10 @@ SmartifyOS is a base application (source code) that makes it easy for you to cre
 5. Now (still in the file manager click on `Applications > System Tools > LXTerminal`)
 6. Write `cd `, past the path you just copied and press Enter
 7. Run
+8. ```
+   chmod +x Install.sh
+   ```
+9. And then
    ```
    ./Install.sh
    ```
@@ -109,15 +113,16 @@ SmartifyOS is a base application (source code) that makes it easy for you to cre
 3. Copy your build Unity app into the `SmartifyOS/GUI/` directory
 4. Run
    ```
+   chmod +x Install.sh
+   ```
+5. And then
+   ```
    ./Install.sh
    ```
 </details>
 
 <details>
    <summary><b>Possible problems</b></summary>
-
-   > **Permission denied when running `./Install.sh`**\
-   > Run `sudo chmod +x *.sh` and try again
 
    > **Installer says it has no Internet**\
    > If you connected the LAN cable after boot you many need to reboot the system with it connected

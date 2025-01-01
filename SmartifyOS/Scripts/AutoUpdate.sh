@@ -9,10 +9,11 @@ if [ -z "$UPDATE_PATH" ]; then
     exit 1
 fi
 
+echo "Installing Update"
+
 # Wait for the Unity app to close
 sleep 5
 
-echo "Installing Update"
 
 rsync -ah --info=progress2 "$UPDATE_PATH" "$HOME/SmartifyOS/GUI/"
 
