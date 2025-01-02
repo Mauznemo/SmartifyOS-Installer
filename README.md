@@ -86,14 +86,13 @@ SmartifyOS is a base application (source code) that makes it easy for you to cre
 1. Open the Export window in Unity (`Ctrl + E` or `SmartifyOS > Export`)
 2. Select a USB drive and click "Export Installer"
 3. On the mini computer press `Super (Win) + E` and open the usb drive, select the folder "SmartifyOS-Installer", right click it and select `Copy`
-4. Go into "Documents", right click and select paste, now open in and select the path and copy it (eg. `/home/debian/Documents/SmartifyOS-Installer`)
-5. Now (still in the file manager click on `Applications > System Tools > LXTerminal`)
-6. Write `cd `, past the path you just copied and press Enter
-7. Run
+4. Go into "Documents", right click and select paste
+5. Right click on the `SmartifyOS-Installer` folder and click open in terminal
+6. Run
    ```
    chmod +x Install.sh
    ```
-9. And then
+7. And then
    ```
    ./Install.sh
    ```
@@ -128,26 +127,32 @@ SmartifyOS is a base application (source code) that makes it easy for you to cre
    > If you connected the LAN cable after boot you many need to reboot the system with it connected
 
    > **Boot takes really long**\
-   > If you boot the system without a connected lan cable it will try to connect to something anyways for several min. To stop ot from doing so press `Super (Win) + E` click on `Applications > System Tools > LXTerminal` and run `./SmartifyOS/Scripts/SetNetworkServices.sh disable`
+   > If you boot the system without a connected LAN cable it will try to connect to something anyways for several min. To stop it from doing so press `Super (Win) + E` click on `Applications > System Tools > LXTerminal` and run `./SmartifyOS/Scripts/SetNetworkServices.sh disable`
+
+   > **Not valid errors**\
+   > If you get en error like `E. Release file for ... is not valid yet` your system date an time is wrong. Run `sudo date -s "2024-12-27 21:35:00"` with your current date and time to fix it.
+
+   > **Unity app never starts/freezes system or takes long to start after install**\
+   > The default Unity app (if you didn't change it) expects the system to have Bluetooth if it doesn't have this it will freeze for around 10 sec every startup
 </details>
 
 ## How to contribute
 First have a look at the **[Contribution guidelines for this project](CONTRIBUTING.md)**.
 
-1. Go to the repository’s GitHub page and click the “Fork” button to create a copy of the repository in your own GitHub account.
+1. Go to the repository’s GitHub page and click the "Fork" button to create a copy of the repository in your own GitHub account.
 2. Clone your new repo
    ```
    git clone https://github.com/your-username/SmartifyOS-Installer.git
    ```
-1. Cd into its directory
+3. Cd into its directory
    ```
    cd SmartifyOS-Installer
    ```
-2. Add the Main Repository as a Remote
+4. Add the Main Repository as a Remote
    ```
    git remote add upstream https://github.com/Mauznemo/SmartifyOS-Installer.git
    ```
-2. Open the directory in your preferred code editor
+5. Open the directory in your preferred code editor
 
 ### Creating a pull request
 
