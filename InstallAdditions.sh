@@ -30,6 +30,8 @@ function installAndroidAuto()
     local sourceDir="Additionals/AndroidAuto/SmartifyOS"
 
     cp -r "$sourceDir" "$destinationDir"
+
+    chmod +x "$HOME/SmartifyOS/AndroidAuto/desktop-head-unit"
 }
 
 function setPermissions() {
