@@ -33,6 +33,13 @@ function installAndroidAuto()
     cp -r "$sourceDir" "$destinationDir"
 }
 
+function setPermissions() {
+    echo "Setting permissions..."
+
+    find $HOME/SmartifyOS/ -name "*.sh" -exec chmod +x {} \;
+    find $HOME/SmartifyOS/ -name "*.py" -exec chmod +x {} \;
+}
+
 if ! checkInternet; then
     echo "Please connect the Computer to the Internet while running the installer!"
     exit 1
@@ -69,10 +76,12 @@ for selection in "${selections[@]}"; do
         1)
             echo "Installing Android Auto..."
             installAndroidAuto
+            setPermissions
             ;;
         2)
             echo "Installing Camera patch..."
             installCameraPatch
+            setPermissions
             ;;
         *)
             echo "Invalid selection: $selection"
