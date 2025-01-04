@@ -45,7 +45,7 @@ function installDependencies() {
     sudo apt-get install -y rfkill pulseaudio-module-bluetooth
 
     # Dependencies for touch input
-    sudo apt-get install -y python3-yaml python3-evdev python3-pynput
+    sudo apt-get install -y python3-evdev python3-pynput
     sudo apt-get install -y xinput
 
     # Other dependencies
@@ -106,7 +106,6 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 function addStartupPrograms() {
     printBold "Adding startup programs..."
-    addStartup "TouchInput" "$SCRIPT_DIR/StartTouchInput.sh"
     addStartup "SmartifyOS" "$HOME/SmartifyOS/Scripts/StartSmartifyOS.sh"
 }
 
