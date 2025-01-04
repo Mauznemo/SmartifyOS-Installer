@@ -16,8 +16,7 @@ function installCameraPatch()
 
     cp -r "$sourceDir" "$destinationDir"
 
-    addStartup "CrateVirtualCamera" "$HOME/SmartifyOS/Scripts/CreateVirtualCamera.sh"
-    addStartup "CameraConversionPatch" "$HOME/SmartifyOS/Scripts/CameraConverter.py"
+    addStartup "StartCameraConverter" "$HOME/SmartifyOS/Scripts/StartCameraConverter.sh"
 }
 
 function installAndroidAuto()
