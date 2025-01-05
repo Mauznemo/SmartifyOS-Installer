@@ -171,7 +171,7 @@ EOF
     sudo sed -i 's/^autorun=1/autorun=0/g' $HOME/.config/pcmanfm/LXDE/pcmanfm.conf
 
     # Hide cursor
-    sed -i -E 's|#xserver-command=X|xserver-command=X -nocursor|' "/etc/lightdm/lightdm.conf"
+    sudo sed -i -E 's|#xserver-command=X|xserver-command=X -nocursor|' "/etc/lightdm/lightdm.conf"
 
     #sudo timedatectl set-ntp false
 }
