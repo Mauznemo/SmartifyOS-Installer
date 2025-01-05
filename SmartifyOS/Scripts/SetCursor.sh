@@ -10,9 +10,9 @@ if [ -z "$ENABLE" ]; then
 fi
 
 if [ "$ENABLE" = "enable" ]; then
-    sudo sed -i 's/xserver-command=X/xserver-command=X -nocursor/' /etc/lightdm/lightdm.conf
-else
     sudo sed -i 's/xserver-command=X -nocursor/xserver-command=X/' /etc/lightdm/lightdm.conf
+else
+    sudo sed -i 's/xserver-command=X/xserver-command=X -nocursor/' /etc/lightdm/lightdm.conf
 fi
 
 echo "Reboot your computer to apply the changes."
