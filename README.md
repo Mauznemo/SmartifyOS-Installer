@@ -43,7 +43,7 @@ SmartifyOS is a base application (source code) that makes it easy for you to cre
 </details>
 
 <details>
-  <summary><b>Manuel Install</b></summary>
+  <summary><b>Manual Install</b></summary>
 
   1. Download the [Debian ISO](https://www.debian.org/download) file
   2. Flash it to a USB drive and boot it on the computer (with for example [balenaEtcher](https://etcher.balena.io/))
@@ -99,7 +99,7 @@ SmartifyOS is a base application (source code) that makes it easy for you to cre
 </details>
 
 <details>
-   <summary><b>Manuel Install</b></summary>
+   <summary><b>Manual Install</b></summary>
 
 1. Clone the repo
    ```
