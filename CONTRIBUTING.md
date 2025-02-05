@@ -38,7 +38,7 @@ For your commit messages please follow [Conventional Commits](https://www.conven
 ## Pull Request Guidelines
 
 1. **Title:**
-   - Use a clear and descriptive title for the pull request that describes the change being made.
+   - Use a clear and descriptive title for the pull request that describes the change being made (also use [Conventional Commits](https://www.conventionalcommits.org/) here!).
 
 2. **Description:**
    - Provide a detailed description of the changes in the pull request.
