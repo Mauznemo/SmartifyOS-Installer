@@ -25,7 +25,7 @@ SmartifyOS is a base application (source code) that makes it easy for you to cre
 <details>
   <summary><b>Simple Install</b></summary>
 
-  1. Download [this](https://files.smartify-os.com/s/ArRApq65ncNZCkC) pre-made ISO Debian file (made with [fai-project.org](https://fai-project.org/FAIme/))
+  1. Download [this](http://files.smartify-os.com/s/ArRApq65ncNZCkC/download/debian-faime.iso) pre-made ISO Debian file (made with [fai-project.org](https://fai-project.org/FAIme/))
   2. Flash it to a USB drive and boot it on the computer (with for example [balenaEtcher](https://etcher.balena.io/))
   3. After reboot login username `debian` password `debian`
   4. Install LXDE and openbox
